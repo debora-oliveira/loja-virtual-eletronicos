@@ -3,7 +3,7 @@ package loja.virtual.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cliente {
+public class Cliente  extends User{
 	private String nome;
 	private String cpf;
 	private String telefone;

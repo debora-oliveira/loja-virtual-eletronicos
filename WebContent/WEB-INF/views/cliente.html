@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link th:href="@{'/resources/css/bootstrap.min.css'}" rel="stylesheet"/>
+<title>Cliente</title>
+</head>
+<body>
+	<!-- pagina para gerenciar dados do cliente -->
+	<div class="container">
+	<h2>Meus dados</h2>
+	<form th:object="${CLIENTE_ATUAL}" 
+				th:action="@{'/cliente'}" method="post">
+		<div class="form-group">
+			<label>Nome</label>
+			<input type="text" class="form-control" th:field="*{nome}"/>
+		</div>
+		<div class="form-group">
+			<label>CPF</label>
+			<input type="text" class="form-control" th:field="*{cpf}"/>
+		</div>
+		<div class="form-group">
+			<label>Telefone</label>
+			<input type="text" class="form-control" th:field="*{telefone}"/>
+		</div>
+		</form>
+		<form >
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control" placeholder="name@example.com" th:field="*{email}"/>
+			</div>
+			<div class="form-group">
+				<label>Senha</label>
+				<input type="text" class="form-control" th:field="*{senha}"/>
+			</div>
+		</form>
+		<form >
+			<h3>Endereço</h3>
+			<div class="form-group">
+				<label>Rua</label>
+				<input type="text" class="form-control" th:field="*{logradouro}"/>
+			</div>
+			<div class="form-group">
+				<label>Nº</label>
+				<input type="text" class="form-control" th:field="*{numero}"/>
+			</div>
+			<div class="form-group">
+				<label>CEP</label>
+				<input type="text" class="form-control" th:field="*{cep}"/>
+			</div>
+			<div class="form-group">
+				<label>Complemento</label>
+				<textarea  class="form-control" rows="2" th:field="*{complemento}"></textarea>
+			</div>
+			<div class="form-group">
+				<label>Bairro</label>
+				<input type="text" class="form-control" th:field="*{bairro}"/>
+			</div>
+			<div class="form-group">
+				<label>Cidade</label>
+				<input />
+			</div>
+			<div class="form-group">
+				<label>Estado</label>
+				<input type="text" class="form-control" th:field="*{estado}"/>
+			</div>
+			<div class="form-group">
+				<label>UF</label>
+				<input type="text" class="form-control" th:field="*{uf}"/>
+			</div>
+		</form>
+	
+	</div>
+</body>
+</html>

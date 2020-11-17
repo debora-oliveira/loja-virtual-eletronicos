@@ -1,6 +1,6 @@
 package loja.virtual.model;
 
-public class Administrador {
+public class Administrador extends User{
 	private String nome;
 	private String cpf;
 	private String telefone;
