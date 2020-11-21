@@ -23,48 +23,51 @@
 			<label>Telefone</label>
 			<input type="text" class="form-control" th:field="*{telefone}"/>
 		</div>
-		</form>
-		<form >
-			<div class="form-group">
+		</form >
+		<form th:object="${CLIENTE_ATUAL}" 
+				th:action="@{'/cliente'}" method="post">
+			<div class="form-group2">
 				<label>Email</label>
 				<input type="text" class="form-control" placeholder="name@example.com" th:field="*{email}"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label>Senha</label>
 				<input type="text" class="form-control" th:field="*{senha}"/>
 			</div>
-		</form>
-		<form >
+		</form >
+			</div>
+		<form th:object="${CLIENTE_ATUAL}" 
+				th:action="@{'/cliente'}" method="post" >
 			<h3>Endereço</h3>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>Rua</label>
 				<input type="text" class="form-control" th:field="*{logradouro}"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>Nº</label>
 				<input type="text" class="form-control" th:field="*{numero}"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>CEP</label>
 				<input type="text" class="form-control" th:field="*{cep}"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>Complemento</label>
 				<textarea  class="form-control" rows="2" th:field="*{complemento}"></textarea>
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>Bairro</label>
 				<input type="text" class="form-control" th:field="*{bairro}"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>Cidade</label>
 				<input />
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>Estado</label>
 				<input type="text" class="form-control" th:field="*{estado}"/>
 			</div>
-			<div class="form-group">
+			<div class="form-group3">
 				<label>UF</label>
 				<input type="text" class="form-control" th:field="*{uf}"/>
 			</div>

@@ -29,5 +29,10 @@ public class Cliente  extends User{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
 }
