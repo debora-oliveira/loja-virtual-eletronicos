@@ -5,6 +5,8 @@ public class Produto {
 	private String marca;
 	private String descricao;
 	private Float valor;
+	private int quantidade;
+	
 	
 	public String getNome() {
 		return nome;
@@ -33,5 +35,11 @@ public class Produto {
 	public void setValor(Float valor) {
 		this.valor = valor;
 	}	
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 	
 }
