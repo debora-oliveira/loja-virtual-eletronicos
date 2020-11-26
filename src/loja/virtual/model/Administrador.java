@@ -1,6 +1,13 @@
 package loja.virtual.model;
 
 public class Administrador extends User{
+	private long id;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	private String nome;
 	private String cpf;
 	private String telefone;
