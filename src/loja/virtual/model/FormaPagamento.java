@@ -2,15 +2,15 @@ package loja.virtual.model;
 
 public class FormaPagamento {
 	private long id;
+	private double desconto;
+	private String formaPagamento;
+	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	private double desconto;
-	private String formaPagamento;
-	
 	
 	public double getDesconto() {
 		return desconto;

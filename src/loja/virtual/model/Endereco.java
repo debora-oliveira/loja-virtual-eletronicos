@@ -2,12 +2,6 @@ package loja.virtual.model;
 
 public class Endereco {
 	private long id;
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	private String logradouro;
 	private String cep;
 	private String numero;
@@ -17,6 +11,12 @@ public class Endereco {
 	private String uf;
 	private String estado;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getLogradouro() {
 		return logradouro;
 	}

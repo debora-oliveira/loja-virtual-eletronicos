@@ -5,17 +5,17 @@ import java.util.List;
 
 public class Cliente  extends User{
 	private long id;
+	private String nome;
+	private String cpf;
+	private String telefone;
+	private List<Endereco> endereco = new ArrayList<>();
+	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	private String nome;
-	private String cpf;
-	private String telefone;
-	private List<Endereco> endereco = new ArrayList<>();
-	
 	public String getNome() {
 		return nome;
 	}

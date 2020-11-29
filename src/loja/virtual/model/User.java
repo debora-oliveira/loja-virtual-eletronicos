@@ -4,6 +4,7 @@ public class User {
 	private long id;
 	private String email;
 	private String senha;
+	
 	public String getEmail() {
 		return email;
 	}
