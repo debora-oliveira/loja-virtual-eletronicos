@@ -27,7 +27,7 @@ public class ClienteDAO implements InterfaceClienteDAO {
 	}
 
 	@Override
-	public void cadastrarCliente(Cliente cliente) {
+	public void insereCliente(Cliente cliente) {
 		try {
 			String query = "{CALL insereCliente (?, ?, ?, ?, ?)}";
 			CallableStatement stmt = conexao.prepareCall(query);

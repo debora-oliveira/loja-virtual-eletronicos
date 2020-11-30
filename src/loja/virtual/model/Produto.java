@@ -5,7 +5,7 @@ public class Produto {
 	private String nome;
 	private String marca;
 	private String descricao;
-	private Float valor;
+	private Double valor;
 	private int quantidade;
 	
 	public long getId() {
@@ -36,10 +36,10 @@ public class Produto {
 		this.descricao = descricao;
 	}
 	
-	public Float getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(Float valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}	
 	public int getQuantidade() {
