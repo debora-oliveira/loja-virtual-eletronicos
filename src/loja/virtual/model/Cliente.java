@@ -1,14 +1,10 @@
 package loja.virtual.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cliente  extends User{
 	private String nome;
 	private String cpf;
 	private String telefone;
-	private List<Endereco> endereco = new ArrayList<>();
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -28,11 +24,5 @@ public class Cliente  extends User{
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-	public List<Endereco> getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(List<Endereco> endereco) {
-		this.endereco = endereco;
 	}
 }

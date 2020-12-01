@@ -37,13 +37,29 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/cliente")
-	public ModelAndView postClientes(
-			@ModelAttribute("CLIENTE_ATUAL") @Valid Cliente c,
-			BindingResult result, @RequestParam("cmd") String cmd ) {
+	public ModelAndView postCliente(
+			@ModelAttribute("CLIENTE_ATUAL") @Valid Cliente c, 
+			BindingResult result, @RequestParam("cmd") String cmd){
 		ModelAndView mv = new ModelAndView("cliente");
-		
-		
-		
+		mv.addObject("LISTA_CLIENTE", lista);
+		if(! result.hasErrors()) {
+			if("adicionar".equals(cmd)) {
+				lista.add(c);
+				System.out.printf("Cliente adicionado, agora "
+						+ "há %d clientes na lista%n", lista.size());
+				mv.addObject("CLIENTE_ATUAL", new Cliente());
+			}else if("pesquisar".equals(cmd)) {
+				List<Cliente> listaTemporaria = new ArrayList<>();
+				for(Cliente cliente : lista) {
+					if(cliente.getCpf().contains(c.getCpf())) {
+						listaTemporaria.add(cliente);
+					}
+				}
+				mv.addObject("LISTA_CLIENTE", listaTemporaria);
+				mv.addObject("CLIENTE_ATUAL", c);
+			}
+		}		
 		return mv;
 	}
+	
 }
