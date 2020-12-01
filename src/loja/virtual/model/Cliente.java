@@ -1,13 +1,13 @@
 package loja.virtual.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cliente  extends User{
 	private long id;
 	private String nome;
 	private String cpf;
 	private String telefone;
-<<<<<<< HEAD
-
-=======
 	private List<Endereco> endereco = new ArrayList<>();
 	
 	public long getId() {
@@ -16,7 +16,7 @@ public class Cliente  extends User{
 	public void setId(long id) {
 		this.id = id;
 	}
->>>>>>> branch 'main' of https://github.com/debora-oliveira/loja-virtual-eletronicos.git
+
 	public String getNome() {
 		return nome;
 	}

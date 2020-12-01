@@ -1,5 +1,6 @@
 package loja.virtual.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import loja.virtual.db.ProdutoDAO;
 import loja.virtual.model.Produto;
 
 @Controller
 public class ProdutoController {
-	
+		
 	@Autowired
 	private List<Produto> lista;
 	
@@ -46,6 +48,7 @@ public class ProdutoController {
 		mv.addObject("LISTA_PRODUTO", lista);
 		if(! result.hasErrors()) {
 			if("adicionar".equals(cmd)) {
+				insereProduto(p);
 				lista.add(p);
 				System.out.printf("Produto adicionado, agora "
 						+ "há %d produtos na lista%n", lista.size());
@@ -63,5 +66,22 @@ public class ProdutoController {
 		}		
 		
 		return mv;
+	}
+	
+	public void insereProduto(Produto produto) {
+		ProdutoDAO produtoCAD;
+		try {
+			produtoCAD = new ProdutoDAO();
+			produtoCAD.InsereProduto(produto);
+			System.out.println("Cadastro de produto realizado!");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Classe não encontrada!");
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Erro de SQL!");
+			System.out.println(e);
+			e.printStackTrace();
+		}
 	}
 }

@@ -25,7 +25,7 @@ public class GenericDAOConexao implements InterfaceGenericDAOConexao {
 				.append(dataBaseName);
 		String connectionUrl = sb.toString();
 		// jdbc:mysql://localhost:lojavirtualeletronico
-		
+		Class.forName("com.mysql.cj.jdbc.Driver");
 		return DriverManager.getConnection(connectionUrl,user,password);
 		
 		//criar conexao usando driverManager, passando como parametros a string de conexao, usuario e senha

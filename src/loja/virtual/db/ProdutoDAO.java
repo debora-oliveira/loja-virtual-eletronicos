@@ -25,8 +25,8 @@ public class ProdutoDAO implements InterfaceProdutoDAO {
 					stmt.setString(2, produto.getMarca());
 					stmt.setString(3, produto.getDescricao());
 					stmt.setDouble(4, produto.getValor());
-					stmt.setDouble(5, produto.getQuantidade());
-					stmt.executeQuery();
+					stmt.setInt(5, produto.getQuantidade());
+					stmt.executeUpdate();
 					conexao.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
