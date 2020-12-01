@@ -1,10 +1,19 @@
 package loja.virtual.model;
 
 public class Produto {
+	private long id;
 	private String nome;
 	private String marca;
 	private String descricao;
-	private Float valor;
+	private Double valor;
+	private int quantidade;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -27,11 +36,17 @@ public class Produto {
 		this.descricao = descricao;
 	}
 	
-	public Float getValor() {
+	public Double getValor() {
 		return valor;
 	}
-	public void setValor(Float valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}	
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
 	
 }

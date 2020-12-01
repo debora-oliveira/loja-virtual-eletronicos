@@ -60,8 +60,7 @@ public class ProdutoController {
 				mv.addObject("LISTA_PRODUTO", listaTemporaria);
 				mv.addObject("PRODUTO_ATUAL", p);
 			}
-		}
-		
+		}		
 		
 		return mv;
 	}

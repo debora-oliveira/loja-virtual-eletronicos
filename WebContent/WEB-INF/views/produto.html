@@ -3,13 +3,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <link th:href="@{'/resources/css/bootstrap.min.css'}" rel="stylesheet"/>
-<title>Gerenciar produtos</title>
+<title>Produtos</title>
 </head>
 <body>
 <!-- página para gerenciar produtos: adicionar remover editar -->
 	
 	<div class="container">
-	<h2>Gerenciar produtos</h2>
+	<h2>Registrar produtos</h2>
 	<form th:object="${PRODUTO_ATUAL}" 
 				th:action="@{'/produto'}" method="post">
 		<div class="form-group">
@@ -23,6 +23,10 @@
 		<div class="form-group">
 			<label>Valor</label>
 			<input type="number" class="form-control" th:field="*{valor}"/>
+		</div>
+		<div class="form-group">
+			<label>Quantidade</label>
+			<input type="number" class="form-control" th:field="*{quantidade}"/>
 		</div>
 		<div class="form-group">
 			<label>Descrição</label>
@@ -44,6 +48,7 @@
 					<th>Nome</th>
 					<th>Marca</th>
 					<th>Valor</th>
+					<th>Quantidade</th>
 					<th>Descricao</th>
 				</tr>
 			</thead>
@@ -52,6 +57,7 @@
 					<td th:text="${produto.nome}">.</td>
 					<td th:text="${produto.marca}">.</td>
 					<td th:text="${produto.valor}">.</td>
+					<td th:text="${produto.quantidade}">.</td>
 					<td th:text="${produto.descricao}">.</td>
 				</tr>
 			</tbody>

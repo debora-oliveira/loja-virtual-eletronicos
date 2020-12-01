@@ -3,9 +3,17 @@ package loja.virtual.model;
 import java.util.Date;
 
 public class Pagamento {
+	private long id;
 	private Date dataPagamento;
 	private double totalComDesconto;
 	private String status;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public Date getDataPagamento() {
 		return dataPagamento;
