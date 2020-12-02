@@ -2,6 +2,7 @@ package loja.virtual.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,22 +48,24 @@ public class ProdutoController {
 		ModelAndView mv = new ModelAndView("produto");
 		mv.addObject("LISTA_PRODUTO", lista);
 		if(! result.hasErrors()) {
+			List<Produto> listaTemporaria = new LinkedList<>();
 			if("adicionar".equals(cmd)) {
 				insereProduto(p);
 				lista.add(p);
+				listaTemporaria = pesquisaTodosProdutos();
 				System.out.printf("Produto adicionado, agora "
 						+ "há %d produtos na lista%n", lista.size());
 				mv.addObject("PRODUTO_ATUAL", new Produto());
 			}else if("pesquisar".equals(cmd)) {
-				List<Produto> listaTemporaria = new ArrayList<>();
-				for(Produto produto : lista) {
-					if(produto.getNome().contains(p.getNome())) {
-						listaTemporaria.add(produto);
-					}
+				if (p.getNome() == "") {
+					listaTemporaria = pesquisaTodosProdutos();					
+				} else {
+					listaTemporaria = pesquisaProduto(p.getNome());		
 				}
-				mv.addObject("LISTA_PRODUTO", listaTemporaria);
-				mv.addObject("PRODUTO_ATUAL", p);
+				
 			}
+			mv.addObject("LISTA_PRODUTO", listaTemporaria);
+			mv.addObject("PRODUTO_ATUAL", p);
 		}		
 		
 		return mv;
@@ -83,5 +86,43 @@ public class ProdutoController {
 			System.out.println(e);
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Produto> pesquisaTodosProdutos(){
+		ProdutoDAO produtosPesquisados;
+		try {
+			produtosPesquisados = new ProdutoDAO();
+			lista = produtosPesquisados.PesquisaTodosProdutos();
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Classe não encontrada!");
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Erro de SQL na tela!");
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		System.out.println("Pesquisa de produtos feita com sucesso!");
+		return lista;
+	}
+	
+	public List<Produto> pesquisaProduto(String nome){
+		ProdutoDAO produtosPesquisados;
+		try {
+			produtosPesquisados = new ProdutoDAO();
+			lista = produtosPesquisados.PesquisaProduto(nome);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Classe não encontrada!");
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Erro de SQL na tela!");
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		System.out.println("Pesquisa de produtos feita com sucesso!");
+		return lista;
 	}
 }

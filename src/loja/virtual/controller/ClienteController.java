@@ -1,5 +1,6 @@
 package loja.virtual.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import loja.virtual.db.ClienteDAO;
 import loja.virtual.model.Cliente;
 
 @Controller
@@ -44,6 +46,7 @@ public class ClienteController {
 		mv.addObject("LISTA_CLIENTE", lista);
 		if(! result.hasErrors()) {
 			if("adicionar".equals(cmd)) {
+				insereCliente(c);
 				lista.add(c);
 				System.out.printf("Cliente adicionado, agora "
 						+ "há %d clientes na lista%n", lista.size());
@@ -60,6 +63,23 @@ public class ClienteController {
 			}
 		}		
 		return mv;
+	}
+	
+	private void insereCliente(Cliente cliente) {
+		ClienteDAO clienteCAD;
+		try {
+			clienteCAD = new ClienteDAO();
+			clienteCAD.insereCliente(cliente);
+			System.out.println("Cadastro de cliente realizado!");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Classe não encontrada!");
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Erro de SQL!");
+			System.out.println(e);
+			e.printStackTrace();
+		}		
 	}
 	
 }

@@ -43,5 +43,11 @@ public class ClienteDAO implements InterfaceClienteDAO {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void pesquisaCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
