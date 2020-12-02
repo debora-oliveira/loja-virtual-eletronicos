@@ -5,18 +5,14 @@ public class Cliente  extends User{
 	private String nome;
 	private String cpf;
 	private String telefone;
-<<<<<<< HEAD
 
-=======
-	private List<Endereco> endereco = new ArrayList<>();
-	
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
->>>>>>> branch 'main' of https://github.com/debora-oliveira/loja-virtual-eletronicos.git
+	
 	public String getNome() {
 		return nome;
 	}
