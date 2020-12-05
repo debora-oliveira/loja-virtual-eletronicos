@@ -6,10 +6,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import loja.virtual.model.Produto;
 
+
+
+
 public class ProdutoDAO implements InterfaceProdutoDAO {
+	
+	@Autowired
 	private Connection conexao;
 
 	public ProdutoDAO() throws ClassNotFoundException, SQLException {
@@ -36,10 +44,6 @@ public class ProdutoDAO implements InterfaceProdutoDAO {
 
 	}
 
-	@Override
-	public void RemoveProduto(Produto p) {
-
-	}
 
 	@Override
 	public List<Produto> PesquisaTodosProdutos() {
@@ -97,6 +101,21 @@ public class ProdutoDAO implements InterfaceProdutoDAO {
 			System.out.println(e);
 		}
 		return listaProdutos;
+	}
+
+	@Override
+	public void removerProduto(Long id) {
+		try {
+			String sql = "DELETE FROM produto WHERE id=?";
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, id);
+			stmt.executeUpdate();
+			conexao.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+			System.out.println("Erro de SQL");
+		}
+		
 	}
 
 }

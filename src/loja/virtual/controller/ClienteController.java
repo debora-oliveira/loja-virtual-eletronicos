@@ -16,7 +16,9 @@ import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import loja.virtual.db.ClienteDAO;
+import loja.virtual.db.ProdutoDAO;
 import loja.virtual.model.Cliente;
+import loja.virtual.model.Produto;
 
 @Controller
 public class ClienteController {
@@ -45,22 +47,23 @@ public class ClienteController {
 		ModelAndView mv = new ModelAndView("cliente");
 		mv.addObject("LISTA_CLIENTE", lista);
 		if(! result.hasErrors()) {
+			List<Cliente> listaTemporaria = new ArrayList<>();
 			if("adicionar".equals(cmd)) {
 				insereCliente(c);
 				lista.add(c);
+				listaTemporaria = pesquisaTodosClientes();
 				System.out.printf("Cliente adicionado, agora "
 						+ "há %d clientes na lista%n", lista.size());
 				mv.addObject("CLIENTE_ATUAL", new Cliente());
 			}else if("pesquisar".equals(cmd)) {
-				List<Cliente> listaTemporaria = new ArrayList<>();
-				for(Cliente cliente : lista) {
-					if(cliente.getCpf().contains(c.getCpf())) {
-						listaTemporaria.add(cliente);
-					}
+				if (c.getNome() == "") {
+					listaTemporaria = pesquisaTodosClientes();					
+//				} else {
+//					listaTemporaria = pesquisaCliente(c.getNome());		
 				}
-				mv.addObject("LISTA_CLIENTE", listaTemporaria);
-				mv.addObject("CLIENTE_ATUAL", c);
 			}
+			mv.addObject("LISTA_CLIENTE", listaTemporaria);
+			mv.addObject("CLIENTE_ATUAL", c);
 		}		
 		return mv;
 	}
@@ -81,5 +84,42 @@ public class ClienteController {
 			e.printStackTrace();
 		}		
 	}
+	
+	private List<Cliente> pesquisaTodosClientes(){
+		ClienteDAO clientesPesquisados;
+		try {
+			clientesPesquisados = new ClienteDAO();
+			lista = clientesPesquisados.pesquisaTodosClientes();
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Classe não encontrada!");
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("Erro de SQL na tela!");
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		
+		return lista;
+	}
+	
+//	public List<Cliente> pesquisaCliente(String nome){
+//		ClienteDAO clientesPesquisados;
+//		try {
+//			clientesPesquisados = new ClienteDAO();
+//			lista = clientesPesquisados.pesquisaCliente(nome);
+//			
+//		} catch (ClassNotFoundException e) {
+//			System.out.println("Classe não encontrada!");
+//			System.out.println(e);
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			System.out.println("Erro de SQL na tela!");
+//			System.out.println(e);
+//			e.printStackTrace();
+//		}
+//		return lista;
+//	}
 	
 }

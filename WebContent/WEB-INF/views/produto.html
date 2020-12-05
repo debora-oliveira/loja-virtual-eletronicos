@@ -10,8 +10,7 @@
 	
 	<div class="container">
 	<h2>Registrar produtos</h2>
-	<form th:object="${PRODUTO_ATUAL}" 
-				th:action="@{'/produto'}" method="post">
+	<form th:object="${PRODUTO_ATUAL}" th:action="@{'/produto'}" method="post">
 		<div class="form-group">
 			<label>Nome</label>
 			<input type="text" class="form-control" th:field="*{nome}"/>
@@ -37,9 +36,13 @@
 						class="btn btn-primary">Adicionar</button>
 			<button type="submit" name="cmd" value="pesquisar"
 						class="btn btn-primary">Pesquisar</button>
+			<!-- <button type="submit" name="cmd" value="Remover"
+						class="btn btn-primary">Remover</button> -->
 		</div>
 	</form>
-	</div>	
+	</div>
+	
+		
 	
 	<div class="container">
 		<table class="table table-striped">
@@ -59,6 +62,10 @@
 					<td th:text="${produto.valor}">.</td>
 					<td th:text="${produto.quantidade}">.</td>
 					<td th:text="${produto.descricao}">.</td>
+					<td><a class="btn btn-danger" name="cmd" value="remover"
+							th:href="@{'/produto/remover/' + ${produto.id}}">
+							Remover</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
