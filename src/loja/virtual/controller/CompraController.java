@@ -1,5 +1,6 @@
 package loja.virtual.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import loja.virtual.db.CompraDAO;
 import loja.virtual.model.Compra;
 
 public class CompraController {
@@ -42,9 +44,28 @@ public class CompraController {
 		mv.addObject("LISTA_COMPRA",lista);
 		if(!result.hasErrors()) {
 			List<Compra> listaTemporaria = new LinkedList<>();
+			if ("finalizarCompras".equals(cmd)) {
+				insereCompra(c);
+				lista.add(c);
+				mv.addObject("COMPRAS_ATUAL", new Compra());
+			}
 		}
 		return mv;
 	}
-	
+			
+	public void insereCompra(Compra compra) {
+		CompraDAO cDAO;
+		try {
+			cDAO = new CompraDAO();
+			cDAO.insereCompra(compra);
+			System.out.println("compra foi salva");
+		} catch (ClassNotFoundException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+	}	
 	
 }
